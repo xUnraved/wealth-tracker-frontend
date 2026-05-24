@@ -1,13 +1,9 @@
 import { defineStore } from 'pinia'
-import { sampleAssets } from '../data/sampleAssets.js'
 
-// Pinia-Store für die Asset-Liste und den aktiven Kategorie-Filter.
-// In Milestone 3 wird hier statt der Beispieldaten ein fetch('/assets')
-// vom Spring-Boot-Backend angebunden – die Komponenten bleiben gleich.
 export const useAssetsStore = defineStore('assets', {
   state: () => ({
-    assets: sampleAssets,
-    selectedCategory: 'ALL' // 'ALL' = kein Filter
+    assets: [],
+    selectedCategory: 'ALL'
   }),
   getters: {
     filteredAssets: (state) =>
@@ -18,6 +14,10 @@ export const useAssetsStore = defineStore('assets', {
   actions: {
     setCategory(category) {
       this.selectedCategory = category
+    },
+    async fetchAssets() {
+      const response = await fetch('https://wealth-tracker-is52.onrender.com/assets')
+      this.assets = await response.json()
     }
   }
 })
