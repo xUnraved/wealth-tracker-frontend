@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useAssetsStore } from './stores/assets.js'
 
@@ -10,6 +11,10 @@ import ThemeToggle from './components/ThemeToggle.vue'
 
 const assetsStore = useAssetsStore()
 const { selectedCategory, filteredAssets } = storeToRefs(assetsStore)
+
+onMounted(() => {
+  assetsStore.fetchAssets()
+})
 </script>
 
 <template>
