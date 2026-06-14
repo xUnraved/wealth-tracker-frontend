@@ -23,8 +23,8 @@ const form = ref({})
 watch(() => props.asset, (val) => {
   if (val) {
     const date = Array.isArray(val.purchaseDate)
-        ? `${val.purchaseDate[0]}-${String(val.purchaseDate[1]).padStart(2,'0')}-${String(val.purchaseDate[2]).padStart(2,'0')}`
-        : val.purchaseDate
+      ? `${val.purchaseDate[0]}-${String(val.purchaseDate[1]).padStart(2,'0')}-${String(val.purchaseDate[2]).padStart(2,'0')}`
+      : val.purchaseDate
     form.value = { ...val, purchaseDate: date }
     editing.value = false
   }
@@ -43,7 +43,7 @@ async function remove() {
 }
 
 const formatCurrency = (value) =>
-    new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(value)
+  new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(value)
 
 const formatDate = (iso) => {
   if (Array.isArray(iso)) {
@@ -100,8 +100,8 @@ const formatDate = (iso) => {
         </div>
 
         <div class="modal-footer">
-          <button class="delete-btn" @click="remove">🗑 Löschen</button>
-          <button class="edit-btn" @click="editing = true">✏️ Bearbeiten</button>
+          <button class="delete-btn" @click="remove">Löschen</button>
+          <button class="edit-btn" @click="editing = true">Bearbeiten</button>
         </div>
       </template>
 
@@ -248,12 +248,13 @@ const formatDate = (iso) => {
 
 .delete-btn {
   padding: 0.55rem 1.1rem;
-  border: 1px solid var(--danger);
+  border: none;
   border-radius: 8px;
-  background: none;
-  color: var(--danger);
+  background: var(--danger);
+  color: #ffffff;
   cursor: pointer;
   font-size: 0.95rem;
+  font-weight: 600;
   margin-right: auto;
 }
 
@@ -265,6 +266,7 @@ const formatDate = (iso) => {
   color: var(--text-primary);
   cursor: pointer;
   font-size: 0.95rem;
+  font-weight: 500;
 }
 
 .cancel-btn {
@@ -285,6 +287,6 @@ const formatDate = (iso) => {
   font-weight: 600;
   cursor: pointer;
   font-size: 0.95rem;
-  color: #1a1a1a;
+  color: #ffffff;
 }
 </style>
