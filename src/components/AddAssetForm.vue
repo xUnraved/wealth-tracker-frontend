@@ -109,7 +109,7 @@ async function submitForm() {
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
-  color: #000;
+  color: #1a1a1a;
   align-self: flex-start;
 }
 
@@ -209,6 +209,6 @@ async function submitForm() {
   font-weight: 600;
   cursor: pointer;
   font-size: 0.95rem;
-  color: #000;
+  color: #1a1a1a;
 }
 </style>

@@ -22,6 +22,13 @@ const categoryColor = computed(() => CATEGORY_META[props.asset.category]?.color 
 const formatCurrency = (value) =>
     new Intl.NumberFormat('de-DE', { style: 'currency', currency: props.asset.currency || 'EUR' }).format(value)
 
-const formatDate = (iso) =>
-    new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(iso))
+const formatDate = (iso) => {
+  if (Array.isArray(iso)) {
+    const [year, month, day] = iso
+    return new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })
+        .format(new Date(year, month - 1, day))
+  }
+  return new Intl.DateTimeFormat('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })
+      .format(new Date(iso))
+}
 </script>
