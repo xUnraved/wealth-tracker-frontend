@@ -4,6 +4,8 @@ import AssetCard from './AssetCard.vue'
 defineProps({
   assets: { type: Array, required: true }
 })
+
+const emit = defineEmits(['select'])
 </script>
 
 <template>
@@ -16,9 +18,10 @@ defineProps({
 
     <div v-else class="grid">
       <AssetCard
-        v-for="asset in assets"
-        :key="asset.id"
-        :asset="asset"
+          v-for="asset in assets"
+          :key="asset.id"
+          :asset="asset"
+          @select="emit('select', $event)"
       />
     </div>
   </section>

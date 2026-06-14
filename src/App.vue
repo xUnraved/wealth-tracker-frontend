@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useAssetsStore } from './stores/assets.js'
 
@@ -9,9 +9,12 @@ import AssetList from './components/AssetList.vue'
 import AssetChart from './components/AssetChart.vue'
 import ThemeToggle from './components/ThemeToggle.vue'
 import AddAssetForm from './components/AddAssetForm.vue'
+import AssetDetail from './components/AssetDetail.vue'
 
 const assetsStore = useAssetsStore()
 const { selectedCategory, filteredAssets } = storeToRefs(assetsStore)
+
+const selectedAsset = ref(null)
 
 onMounted(() => {
   assetsStore.fetchAssets()
@@ -33,10 +36,12 @@ onMounted(() => {
       <AddAssetForm />
 
       <div class="bottom-grid">
-        <AssetList :assets="filteredAssets" />
+        <AssetList :assets="filteredAssets" @select="selectedAsset = $event" />
         <AssetChart :assets="filteredAssets" />
       </div>
     </main>
+
+    <AssetDetail :asset="selectedAsset" @close="selectedAsset = null" />
   </div>
 </template>
 

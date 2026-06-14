@@ -13,6 +13,8 @@ const props = defineProps({
   asset: { type: Object, required: true }
 })
 
+const emit = defineEmits(['select'])
+
 const profit = computed(() => props.asset.currentValue - props.asset.purchasePrice)
 const profitPercent = computed(() => (profit.value / props.asset.purchasePrice) * 100)
 
@@ -34,7 +36,7 @@ const formatDate = (iso) => {
 </script>
 
 <template>
-  <article class="asset-card">
+  <article class="asset-card" @click="emit('select', asset)">
     <header class="card-header">
       <span class="badge" :style="{ backgroundColor: categoryColor + '22', color: categoryColor }">
         {{ categoryLabel }}
@@ -76,6 +78,7 @@ const formatDate = (iso) => {
   flex-direction: column;
   gap: 0.55rem;
   transition: transform 120ms ease, border-color 120ms ease;
+  cursor: pointer;
 }
 .asset-card:hover {
   transform: translateY(-2px);
@@ -150,6 +153,7 @@ const formatDate = (iso) => {
   margin-top: 0.3rem;
   gap: 0.5rem;
 }
+
 .notes {
   font-style: italic;
   text-align: right;
