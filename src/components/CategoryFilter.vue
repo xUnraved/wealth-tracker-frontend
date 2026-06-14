@@ -1,18 +1,15 @@
 <script setup>
-import { CATEGORY_META } from '../data/sampleAssets.js'
-
 defineProps({
   modelValue: { type: String, required: true }
 })
 const emit = defineEmits(['update:modelValue'])
 
 const buttons = [
-  { value: 'ALL', label: 'Alle', color: '#8a93a6' },
-  ...Object.entries(CATEGORY_META).map(([value, meta]) => ({
-    value,
-    label: meta.label,
-    color: meta.color
-  }))
+  { value: 'ALL',         label: 'Alle',       color: '#8a93a6' },
+  { value: 'STOCK',       label: 'Aktien',     color: '#4ade80' },
+  { value: 'CRYPTO',      label: 'Krypto',     color: '#fbbf24' },
+  { value: 'CASH',        label: 'Bargeld',    color: '#60a5fa' },
+  { value: 'REAL_ESTATE', label: 'Immobilien', color: '#c084fc' }
 ]
 
 const select = (value) => emit('update:modelValue', value)
@@ -22,14 +19,14 @@ const select = (value) => emit('update:modelValue', value)
   <div class="filter">
     <span class="filter-label">Filter:</span>
     <button
-      v-for="btn in buttons"
-      :key="btn.value"
-      class="chip"
-      :class="{ active: modelValue === btn.value }"
-      :style="modelValue === btn.value
+        v-for="btn in buttons"
+        :key="btn.value"
+        class="chip"
+        :class="{ active: modelValue === btn.value }"
+        :style="modelValue === btn.value
         ? { borderColor: btn.color, color: btn.color, backgroundColor: btn.color + '1A' }
         : null"
-      @click="select(btn.value)"
+        @click="select(btn.value)"
     >
       {{ btn.label }}
     </button>
