@@ -8,6 +8,7 @@ import CategoryFilter from './components/CategoryFilter.vue'
 import AssetList from './components/AssetList.vue'
 import AssetChart from './components/AssetChart.vue'
 import ThemeToggle from './components/ThemeToggle.vue'
+import AddAssetForm from './components/AddAssetForm.vue'
 
 const assetsStore = useAssetsStore()
 const { selectedCategory, filteredAssets } = storeToRefs(assetsStore)
@@ -28,6 +29,8 @@ onMounted(() => {
       <SummaryBar :assets="filteredAssets" />
 
       <CategoryFilter v-model="selectedCategory" />
+
+      <AddAssetForm />
 
       <div class="bottom-grid">
         <AssetList :assets="filteredAssets" />
