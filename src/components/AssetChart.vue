@@ -5,7 +5,8 @@ const CATEGORY_META = {
   STOCK:       { label: 'Aktien',     color: '#4ade80' },
   CRYPTO:      { label: 'Krypto',     color: '#fbbf24' },
   CASH:        { label: 'Bargeld',    color: '#60a5fa' },
-  REAL_ESTATE: { label: 'Immobilien', color: '#c084fc' }
+  REAL_ESTATE: { label: 'Immobilien', color: '#c084fc' },
+  OTHER:       { label: 'Sonstige',   color: '#f87171' }
 }
 
 const props = defineProps({

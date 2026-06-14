@@ -9,7 +9,8 @@ const buttons = [
   { value: 'STOCK',       label: 'Aktien',     color: '#4ade80' },
   { value: 'CRYPTO',      label: 'Krypto',     color: '#fbbf24' },
   { value: 'CASH',        label: 'Bargeld',    color: '#60a5fa' },
-  { value: 'REAL_ESTATE', label: 'Immobilien', color: '#c084fc' }
+  { value: 'REAL_ESTATE', label: 'Immobilien', color: '#c084fc' },
+  { value: 'OTHER',       label: 'Sonstige',   color: '#f87171' }
 ]
 
 const select = (value) => emit('update:modelValue', value)
